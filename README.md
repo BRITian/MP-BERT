@@ -26,5 +26,7 @@ https://www.mindspore.cn/install
 Pre-training of MP-BERT is not supported using the CPU and fine-tuning of training on large datasets is not recommended. predictions calculated by the CPU are recommended to be installed using conda or pip:<br>
 https://www.mindspore.cn/install
 
-
+## Structure of MP-BERT and Finetune Task
+M-BERT is trained using publicly available unlabelled pure sequence protein sequences, and BERT is trained by self-supervised learning.<br>
+We train and provide several different pre-trained models with different BERT Hidden Layer sizes, different training data and different data compositions.
 
