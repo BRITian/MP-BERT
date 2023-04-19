@@ -15,7 +15,6 @@ Download Ascend traning base image for MindSpore framework from ascendhub:
 
 https://ascendhub.huawei.com/public-ascendhub/mindspore-modelzoo#/detail/ascend-mindspore
 
-Note: Ascend and CANN firmware and drivers need to be installed in advance before installation.
-
+Note: Ascend and CANN firmware and drivers need to be installed in advance before installation.<br>
 Confirm installation of ARM-based Ubuntu 18.04/CentOS 7.6 64-bit operating system.
 
