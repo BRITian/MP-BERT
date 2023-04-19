@@ -11,8 +11,7 @@
 
 To run MP-BERT at Ascend using the MIndSpore framework, it is recommended to use Docker, an open source application container engine that allows developers to package their applications, as well as dependency packages, into a lightweight, portable container. By using Docker, rapid deployment of MindSpore can be achieved and isolated from the system environment.
 
-Download Ascend traning base image for MindSpore framework from ascendhub: 
-
+Download Ascend traning base image for MindSpore framework from ascendhub: <br>
 https://ascendhub.huawei.com/public-ascendhub/mindspore-modelzoo#/detail/ascend-mindspore
 
 Note: Ascend and CANN firmware and drivers need to be installed in advance before installation.<br>
