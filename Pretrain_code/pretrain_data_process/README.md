@@ -9,7 +9,7 @@ This section contains the data processing code for pre-training and the pre-trai
 First you need to build a serial relationship dataset using a tool such as ProtENN
 Then organize your input data in the following format
 
-root_data_path <br>
+> root_data_path <br>
 &emsp;&emsp;| <br>
 &emsp;&emsp;|---folder1 <br>
 &emsp;&emsp;|&emsp;&emsp;|---file_name_1.fasta <br>
