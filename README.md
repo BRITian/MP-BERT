@@ -41,6 +41,6 @@ A fine-tuned framework for classification, regression and sitess prediction is c
 As MP-BERT needs to be trained on a large dataset, we recommend using a trained pre-trained model or contacting us.<br>
 In our study, we used eight Ascend 910 computing cards on a Huawei Atlas 800-9000 training server to complete the training.<br>
 The training code is stored under Pretrain_code and the training data is taken from the UniRef dataset.<br>
-Current results for the pre-training task of sequence pairs using Pfamily to establish links between sequences, predicted using the [ProtENN Tookit](https://
+Current results for the pre-training task of sequence pairs using Pfamily to establish links between sequences, predicted using the [ProtENN](https://
 console.cloud.google.com/storage/browser/brain-genomics-public/research/proteins/pfam/random_split) <br>
 
