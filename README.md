@@ -31,4 +31,5 @@ MP-BERT is trained using publicly available unlabelled pure sequence protein seq
 We train and provide several different pre-trained models with different MP-BERT Hidden Layer sizes, different training data and different data compositions.
 A fine-tuned framework for classification, regression and sitess prediction is currently available, as shown in Figures b and c.
 
+![image](./images/MP-BERT-logo.png)
 ![](./images/structure_Fig S2-10.jpg)
