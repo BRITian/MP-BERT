@@ -26,9 +26,21 @@ https://www.mindspore.cn/install
 Pre-training of MP-BERT is not supported using the CPU and fine-tuning of training on large datasets is not recommended. predictions calculated by the CPU are recommended to be installed using conda or pip:<br>
 https://www.mindspore.cn/install
 
+### Online Service (Huawei ModelArts Platform, with Huawei Ascend 910 NPU)
+Huawei provides an online graphical training platform, ModelArts, for pre-training and fine-tuning of the MP-BERT, as detailed in:
+https://www.huaweicloud.com/product/modelarts.html?utm_source=3.baidu.com&utm_medium=organic&utm_adplace=kapian
+
 ## Structure of MP-BERT and Finetune Task
 MP-BERT is trained using publicly available unlabelled pure sequence protein sequences, by self-supervised learning in Figure a.<br>
 We train and provide several different pre-trained models with different MP-BERT Hidden Layer sizes, different training data and different data compositions.
 A fine-tuned framework for classification, regression and sitess prediction is currently available, as shown in Figures b and c.
 
 ![structure](./images/structure.jpg)
+
+## MP-BERT Pre-training
+As MP-BERT needs to be trained on a large dataset, we recommend using a trained pre-trained model or contacting us.<br>
+In our study, we used eight Ascend 910 computing cards on a Huawei Atlas 800-9000 training server to complete the training.<br>
+The training code is stored under Pretrain_code and the training data is taken from the UniRef dataset.<br>
+Current results for the pre-training task of sequence pairs using Pfamily to establish links between sequences, predicted using the [ProtENN Tookit](https://
+console.cloud.google.com/storage/browser/brain-genomics-public/research/proteins/pfam/random_split) <br>
+
