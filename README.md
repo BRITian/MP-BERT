@@ -27,6 +27,6 @@ Pre-training of MP-BERT is not supported using the CPU and fine-tuning of traini
 https://www.mindspore.cn/install
 
 ## Structure of MP-BERT and Finetune Task
-M-BERT is trained using publicly available unlabelled pure sequence protein sequences, and BERT is trained by self-supervised learning.<br>
-We train and provide several different pre-trained models with different BERT Hidden Layer sizes, different training data and different data compositions.
+MP-BERT is trained using publicly available unlabelled pure sequence protein sequences, by self-supervised learning.<br>
+We train and provide several different pre-trained models with different MP-BERT Hidden Layer sizes, different training data and different data compositions.
 
