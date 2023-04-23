@@ -19,13 +19,9 @@ Then organize your input data in the following format
 where each file_name_n.fasta represents the same type of protein
 
 Usage:
-···
-python
-···
-
-
-
-
+```
+python generate_pretrain.py --input_file <root_data_path> --output_file <output_path> --vocab_file <vocab_file_path> --max_seq_length <max_seq_length> --max_predictions_per_seq <max_predictions_per_seq>
+```
 
 **Attention**
 * The processing of the pre-training data depends on your device, typically it takes around 20 days to process the data (with pfam predictions taking around 1-2 weeks, GPU accelerated predictions are recommended, and data processing to training data takes around 1-2 weeks)
