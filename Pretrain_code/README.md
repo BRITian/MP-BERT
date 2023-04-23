@@ -36,17 +36,19 @@ bash scripts/run_standalone_pretrain_ascend.sh 0 1 <mindrecord_path>
 
 # run distributed pre-training example
 python scripts/ascend_distributed_launcher/get_distribute_pretrain_cmd.py --run_script_dir ./scripts/run_distributed_pretrain_ascend.sh --hyper_parameter_config_dir ./scripts/ascend_distributed_launcher/hyper_parameter_config.ini --data_dir <mindrecord_path> --hccl_config /path/hccl.json --cmd_file ./distributed_cmd.sh
-bash scripts/run_distributed_pretrain_ascend.sh /path/cn-wiki-128 /path/hccl.json
+bash scripts/run_distributed_pretrain_ascend.sh <mindrecord_path> /path/hccl.json
 ```
+
+You should create hccl.conf according to the [hccl_tools](https://gitee.com/mindspore/models/tree/master/utils/hccl_tools) help documentation
 
 #### running on GPU
 
 ```
 # run standalone pre-training example
-bash scripts/run_standalone_pretrain_for_gpu.sh 0 1 /path/cn-wiki-128
+bash scripts/run_standalone_pretrain_for_gpu.sh 0 1 <mindrecord_path>
 
 # run distributed pre-training example
-bash scripts/run_distributed_pretrain_for_gpu.sh /path/cn-wiki-128
+bash scripts/run_distributed_pretrain_for_gpu.sh <mindrecord_path>
 ```
 
 The pre-training module of MP-BERT is based on the MindSpore BERT modification, but the script to start run the pre-training is the same as the MindSpore BERT, for more information on this please visit: 
