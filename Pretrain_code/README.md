@@ -27,3 +27,30 @@ python generate_pretrain.py --input_file <root_data_path> --output_file <output_
 * The processing of the pre-training data depends on your device, typically it takes around 20 days to process the data (with pfam predictions taking around 1-2 weeks, GPU accelerated predictions are recommended, and data processing to training data takes around 1-2 weeks)
 * Keep an eye on your device memory, you may need to limit the total amount of data you can process in a single session
 
+## Pre-training
+#### Run on Ascend
+
+```
+# run standalone pre-training example
+bash scripts/run_standalone_pretrain_ascend.sh 0 1 <mindrecord_path>
+
+# run distributed pre-training example
+python scripts/ascend_distributed_launcher/get_distribute_pretrain_cmd.py --run_script_dir ./scripts/run_distributed_pretrain_ascend.sh --hyper_parameter_config_dir ./scripts/ascend_distributed_launcher/hyper_parameter_config.ini --data_dir <mindrecord_path> --hccl_config /path/hccl.json --cmd_file ./distributed_cmd.sh
+
+bash scripts/run_distributed_pretrain_ascend.sh /path/cn-wiki-128 /path/hccl.json
+```
+
+#### running on GPU
+
+```
+# run standalone pre-training example
+bash scripts/run_standalone_pretrain_for_gpu.sh 0 1 /path/cn-wiki-128
+
+# run distributed pre-training example
+bash scripts/run_distributed_pretrain_for_gpu.sh /path/cn-wiki-128
+```
+
+
+
+
+
