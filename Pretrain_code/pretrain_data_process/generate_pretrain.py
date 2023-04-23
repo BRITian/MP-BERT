@@ -9,17 +9,10 @@ from generate_funcs import create_instances_from_document,write_instance_to_exam
 def parse_args():
     parser = ArgumentParser(description="Generate MindRecord for bert")
     parser.add_argument("--random_seed", type=int, default=100, help="Random seed for data generation.")
-    parser.add_argument("--use_pfam_files_num", type=int, default=100, help="Use pfam files num")
     parser.add_argument("--input_file", type=str, default="",help="Input raw text file (or comma-separated list of files).")
     parser.add_argument("--output_file", type=str, default="",
                         help="Output MindRecord file (or comma-separated list of files).")
     parser.add_argument("--vocab_file", type=str, default="",help="The vocabulary file that the BERT model was trained on.")
-    parser.add_argument("--index_num", type=str,default="0")
-    parser.add_argument("--do_lower_case", type=bool, default=True,
-                        help="Whether to lower case the input text. "
-                             "Should be True for uncased models and False for cased models.")
-    parser.add_argument("--do_whole_word_mask", type=bool, default=False,
-                        help="Whether to use whole word masking rather than per-WordPiece masking.")
     parser.add_argument("--max_seq_length", type=int, default=2048, help="Maximum sequence length.")
     parser.add_argument("--max_predictions_per_seq", type=int, default=128,
                         help="Maximum number of masked LM predictions per sequence.")
@@ -35,13 +28,11 @@ def create_training_instances(input_file, tokenizer, max_seq_length,
                               dupe_factor, short_seq_prob, masked_lm_prob,
                               max_predictions_per_seq, rng):
     all_documents = {}
-    use_pfam_files_num=args.use_pfam_files_num
     folders=os.listdir(input_file)
     folders.sort()
     rng.shuffle(folders)
     print("============\n total folders ===========")
     print(folders)
-    folders=folders[use_pfam_files_num*int(args.index_num):use_pfam_files_num*(int(args.index_num)+1)]
     print("============\n select folders ===========")
     print(folders)
     print("============\n length folders ===========")
@@ -78,16 +69,17 @@ def create_training_instances(input_file, tokenizer, max_seq_length,
         instances.extend(create_instances_from_document(all_documents, document_index, max_seq_length,
                                                         short_seq_prob, masked_lm_prob, max_predictions_per_seq,
                                                         vocab_words, rng,0.5))
+        pass
 
     rng.shuffle(instances)
     print("instance number"+str(len(instances)))
     print("write_instance_to_example_files", flush=True)
 
     write_instance_to_example_files(instances, tokenizer, args.max_seq_length,args.max_predictions_per_seq,
-                                    args.output_file+"_fasta_index_"+str(args.index_num)+"_seed_index_"+str(args.random_seed)+".mindrecord",args.vocab_file)
+                                    args.output_file+"fasta.mindrecord",args.vocab_file)
 
 def main():
-    tokenizer = tokenization.FullTokenizer(vocab_file=args.vocab_file, do_lower_case=args.do_lower_case)
+    tokenizer = tokenization.FullTokenizer(vocab_file=args.vocab_file, do_lower_case=True)
     rng = random.Random(args.random_seed)
     print("before create_training_instances", flush=True)
     create_training_instances(
