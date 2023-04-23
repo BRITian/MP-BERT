@@ -48,6 +48,10 @@ bash scripts/run_standalone_pretrain_for_gpu.sh 0 1 /path/cn-wiki-128
 # run distributed pre-training example
 bash scripts/run_distributed_pretrain_for_gpu.sh /path/cn-wiki-128
 ```
+
+#### running on ModelArts
+[ The parameters in this section differ from the MindSpore BERT script ]
+
 The pre-training module of MP-BERT is based on the MindSpore BERT modification, but the script to start run the pre-training is the same as the MindSpore BERT, for more information on this please visit: 
 https://gitee.com/mindspore/models/blob/master/official/nlp/Bert/README.md
 
