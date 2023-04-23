@@ -26,6 +26,7 @@ python
 
 
 
-
-The processing of the pre-training data depends on your device, typically it takes around 20 days to process the data (with pfam predictions taking around 1-2 weeks, GPU accelerated predictions are recommended, and data processing to training data takes around 1-2 weeks)
+**Attention**
+* The processing of the pre-training data depends on your device, typically it takes around 20 days to process the data (with pfam predictions taking around 1-2 weeks, GPU accelerated predictions are recommended, and data processing to training data takes around 1-2 weeks)
+* Keep an eye on your device memory, you may need to limit the total amount of data you can process in a single session
 
