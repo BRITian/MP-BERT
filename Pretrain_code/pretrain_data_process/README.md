@@ -19,8 +19,9 @@ Then organize your input data in the following format
 where each file_name_n.fasta represents the same type of protein
 
 Usage:
+···
 python
-
+···
 
 
 
