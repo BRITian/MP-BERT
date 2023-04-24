@@ -50,4 +50,9 @@ Fine tuning can be achieved on one NPU or GPU card
 Please load a pre-trained model to achieve fine-tuning according to your needs
 **See Finetune_code section for details**
 
+## MP-BERT Fine-tuning downstream tasks
+### MPB-PPI
+For new information see:
 
+### MPB-PPISP
+For new information see:
