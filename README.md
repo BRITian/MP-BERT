@@ -43,5 +43,11 @@ As MP-BERT needs to be trained on a large dataset, we recommend using a trained 
 In our study, we used 8 * Ascend 910 32GB computing NPUs, 768GB Memory on a Huawei Atlas 800-9000 training server to complete the training.<br>
 The data processing and pre-training code is stored under Pretrain_code and the training data is taken from the UniRef dataset.<br>
 Current results for the pre-training task of sequence pairs using Pfamily to establish links between sequences, predicted using the [ProtENN](https://console.cloud.google.com/storage/browser/brain-genomics-public/research/proteins/pfam/random_split) .<br>
- 
+**See the Pretrain_code section for more information on the use of pre-training**
+
+## MP-BERT Fine-tuning
+Fine tuning can be achieved on one NPU or GPU card
+Please load a pre-trained model to achieve fine-tuning according to your needs
+**See Finetune_code section for details**
+
 
