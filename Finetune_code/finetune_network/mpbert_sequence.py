@@ -130,6 +130,7 @@ def do_train(dataset=None, network=None, load_checkpoint_path="", save_checkpoin
                                       do_shuffle=(args_opt.train_data_shuffle.lower() == "true"))
 
         steps_per_epoch = ds_train.get_dataset_size()
+        print("data_size: ", str(steps_per_epoch))
 
         # optimizer
         if optimizer_cfg.optimizer == 'AdamWeightDecay':
@@ -194,16 +195,15 @@ def do_train(dataset=None, network=None, load_checkpoint_path="", save_checkpoin
 
 def cal_metrics(true_labels, pred_labels, num_class,print_result={}):
     """ calculate metrics """
-    try:
-        print_result["AUC"] = metrics.roc_auc_score(np.eye(num_class)[true_labels], pred_labels)
-    except:
-        print(
-            "[Warning] Can't caculate AUC, this may be due to the fact that the predicted category is only one category, CONTINUE")
+    print(true_labels)
+    print(np.eye(num_class)[true_labels.astype(int)])
+    print(pred_labels)
+    print_result["AUC"] = metrics.roc_auc_score(np.eye(num_class)[true_labels.astype(int)], pred_labels, average="macro")
     pred_labels = np.argmax(pred_labels, axis=1)
     print_result["ACC"] = metrics.accuracy_score(true_labels, pred_labels)
-    print_result["precision"] = metrics.precision_score(true_labels, pred_labels)
-    print_result["Recall"] = metrics.recall_score(true_labels, pred_labels)
-    print_result["F1"] = metrics.f1_score(true_labels, pred_labels)
+    print_result["precision"] = metrics.precision_score(true_labels, pred_labels,average="macro")
+    print_result["Recall"] = metrics.recall_score(true_labels, pred_labels,average="macro")
+    print_result["F1"] = metrics.f1_score(true_labels, pred_labels,average="macro")
     print_result["MCC"] = metrics.matthews_corrcoef(true_labels, pred_labels)
     if num_class == 2:
         print_result["Sensitivity"] = sensitivity(true_labels, pred_labels, 2)[1]
@@ -223,7 +223,7 @@ def do_eval(dataset=None, network=None, num_class=None, load_checkpoint_path="",
     columns_list = ["input_ids", "input_mask", "segment_ids", "label_ids"]
 
     true_labels = np.empty((0))
-    pred_labels = np.empty((0, 2))
+    pred_labels = np.empty((0, num_class))
 
     for data in dataset.create_dict_iterator(num_epochs=1):
         input_data = []
@@ -397,7 +397,7 @@ def do_predict(seq_len=1024, network=None, num_class=2, load_checkpoint_path="",
 
     if args_opt.print_predict==True:
         true_labels = np.empty((0))
-        pred_labels = np.empty((0, 2))
+        pred_labels = np.empty((0, num_class))
 
     seq_print_results=[]
 
