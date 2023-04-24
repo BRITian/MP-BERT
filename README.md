@@ -59,7 +59,7 @@ Please load a pre-trained model to achieve fine-tuning according to your needs
 
 ## MP-BERT Fine-tuning downstream tasks
 ### MPB-PPI
-For new information see:
+For new information see: [MPB-PPI and MPB-PPISP](https://github.com/BRITian/MPB-PPI-MPB-PPISP) 
 
 ### MPB-PPISP
-For new information see:
+For new information see: [MPB-PPI and MPB-PPISP](https://github.com/BRITian/MPB-PPI-MPB-PPISP) 
