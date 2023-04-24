@@ -15,10 +15,10 @@ import tokenization
 
 def parse_args():
     parser = ArgumentParser(description="Generate MindRecord for bert task: MPB-CLS")
-    parser.add_argument("--data_dir", type=str, default=r"F:\bert\results_for_paper\data\finetune_data\classification\protease_temp")
-    parser.add_argument("--vocab_file", type=str, default="../utils/vocab_v2.txt",
+    parser.add_argument("--data_dir", type=str, default="")
+    parser.add_argument("--vocab_file", type=str, default="./vocab_v2.txt",
                         help="The vocabulary file that the BERT model was trained on.")
-    parser.add_argument("--output_dir", type=str, default=r"F:\bert\results_for_paper\data\finetune_data\classification\protease_temp",
+    parser.add_argument("--output_dir", type=str, default="",
                         help="The output directory where the mindrecord will be written.")
     parser.add_argument("--max_seq_length", type=int, default=1024, help="Maximum sequence length.")
     parser.add_argument("--do_train", type=bool, default=True, help="Whether to run training.")

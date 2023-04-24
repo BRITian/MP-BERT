@@ -1,14 +1,12 @@
 import os
 import csv
-import json
 from argparse import ArgumentParser
 import numpy as np
 from mindspore.mindrecord import FileWriter
 import pandas as pd
-from sklearn.utils import class_weight
 import sys
 sys.path.append("..")
-from utils import tokenization
+import tokenization
 
 def parse_args():
     parser = ArgumentParser(description="MP-BERT sequence")
@@ -28,43 +26,16 @@ def parse_args():
 
 
 class InputExample():
-    """A single training/test example for simple sequence classification."""
 
     def __init__(self,  text_a, text_b=None, label_a=None,label_b=None,data_format=None):
-        """Constructs a InputExample.
 
-        Args:
-          guid: Unique id for the example.
-          text_a: string. The untokenized text of the first sequence. For single
-            sequence tasks, only this sequence must be specified.
-          text_b: (Optional) string. The untokenized text of the second sequence.
-            Only must be specified for sequence pair tasks.
-          label: (Optional) string. The label of the example. This should be
-            specified for train and dev examples, but not for test examples.
-        """
         self.text_a = text_a
         self.text_b = text_b
         self.label_a = label_a
         self.label_b = label_b
         self.data_format=data_format
 
-
-class PaddingInputExample():
-    """Fake example so the num input examples is a multiple of the batch size.
-
-    When running eval/predict on the TPU, we need to pad the number of examples
-    to be a multiple of the batch size, because the TPU requires a fixed batch
-    size. The alternative is to drop the last batch, which is bad because it means
-    the entire output data won't be generated.
-
-    We use this class instead of `None` because treating `None` as padding
-    battches could cause silent errors.
-    """
-
-
 class InputFeatures():
-    """A single set of features of data."""
-
     def __init__(self,
                  input_ids,
                  input_mask,
@@ -75,63 +46,45 @@ class InputFeatures():
         self.segment_ids = segment_ids
         self.label_id = label_id
 
+class PaddingInputExample():
+    """
+    Fake example
+    """
 
 class DataProcessor():
-    """Base class for data converters for sequence classification data sets."""
 
     def get_train_examples(self, data_dir):
-        """Gets a collection of `InputExample`s for the train set."""
         raise NotImplementedError()
 
     def get_val_examples(self, data_dir):
-        """Gets a collection of `InputExample`s for the dev set."""
         raise NotImplementedError()
 
     def get_test_examples(self, data_dir):
-        """Gets a collection of `InputExample`s for prediction."""
         raise NotImplementedError()
 
     def get_labels(self):
-        """Gets the list of labels for this data set."""
         raise NotImplementedError()
 
     @classmethod
-    def _read_tsv(cls, input_file, quotechar=None):
-        """Reads a tab separated value file."""
-        with open(input_file, "r") as f:
-            reader = csv.reader(f, delimiter="\t", quotechar=quotechar)
-            lines = []
-            for line in reader:
-                lines.append(line)
-            return lines
-
-    @classmethod
-    def _read_csv(cls, input_file, quotechar=None):
-        """Reads a tab separated value file."""
+    def _read_csv(cls, input_file):
 
         return pd.read_csv(input_file)
 
-
 class MPB_SEQ_Processor(DataProcessor):
-    """Processor for the CLUENER data set."""
 
     def get_train_examples(self, data_dir):
-        """See base class."""
         return self._create_examples(
             self._read_csv(os.path.join(data_dir, "train.csv")))
 
     def get_val_examples(self, data_dir):
-        """See base class."""
         return self._create_examples(
             self._read_csv(os.path.join(data_dir, "val.csv")))
 
     def get_test_examples(self, data_dir):
-        """See base class."""
         return self._create_examples(
             self._read_csv(os.path.join(data_dir, "test.csv")))
 
     def _create_examples(self, lines):
-        """See base class."""
         examples = []
         for (i, line) in enumerate(lines.iterrows()):
 
@@ -173,7 +126,6 @@ def truncate_seq_pair_2x(tokens_a, tokens_b,label_a,label_b, max_length):
 
 
 def convert_single_example(ex_index, example,  max_seq_length, tokenizer):
-    """Converts a single `InputExample` into a single `InputFeatures`."""
 
     if isinstance(example, PaddingInputExample):
         return InputFeatures(
@@ -182,13 +134,7 @@ def convert_single_example(ex_index, example,  max_seq_length, tokenizer):
             segment_ids=[0] * max_seq_length,
             label_id=[0] * max_seq_length)
 
-    # label_map = {}
-    #
-    # label_list=list(set(example.label_a))
-    # label_list.extend(list(set(example.label_b)))
-    # label_list=list(set(label_list))
-    # label_list.sort()
-    #
+
     if "0" not in example.label_a:
         label_map={"A":0,"C":1,"D":3,"E":4,"G":5,"H":6,"I":7,"L":8,"M":9,"N":10,"O":11,"P":12,"R":13,"S":14,"T":15,"U":16,"V":17,"X":18,"Y":19}
         label_a=[label_map[x] for x in example.label_a]
@@ -241,11 +187,9 @@ def convert_single_example(ex_index, example,  max_seq_length, tokenizer):
 
     input_ids = tokenization.convert_tokens_to_ids(args.vocab_file, tokens)
 
-    # The mask has 1 for real tokens and 0 for padding tokens. Only real
-    # tokens are attended to.
+
     input_mask = [1] * len(input_ids)
 
-    # Zero-pad up to the sequence length.
     while len(input_ids) < max_seq_length:
         input_ids.append(0)
         input_mask.append(0)
@@ -315,11 +259,6 @@ def file_based_convert_examples_to_features(
     writer.commit()
     print("Total instances is: ", total_written, flush=True)
     print("skip "+str(skip_seq))
-    class_weights = class_weight.compute_class_weight(class_weight='balanced',
-                                                      classes=[0, 1],
-                                                      y=np.array(total_label).astype(int))
-
-    print(class_weights)
     print(np.sum(total_label)/len(total_label))
 
 def main():
