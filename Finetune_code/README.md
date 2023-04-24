@@ -12,7 +12,7 @@ First, you need to organize the training data into the following format:
 Each csv file needs to contain the following five columns：
 
 | id_0   	| seq_0 |     id_1	 | seq_1   	| label |
-| :-----: 	| :--: | :--: | :--: | :-------:	 |
+| :--: 	| :--: | :--: | :--: | :--:	 |
 | the first protein id | the first protein sequence | the second protein id | the second protein sequence | int label |
 
 
@@ -37,7 +37,7 @@ First, you need to organize the training data into the following format:
 
 Each csv file needs to contain the following five columns：
 
-| id_0   	| seq_0 |     label_0	 | id_1   	| seq_1 |     label_1	 |
+| id_0   	| seq_0 |     label_0	 | id_1   	| seq_1 | label_1	 |
 | :--: 	| :--: | :--: | :--: | :--:	 | :--:	 |
 | the first protein id | the first protein sequence | the first label | the second protein id | the second protein sequence | the second label |
 
