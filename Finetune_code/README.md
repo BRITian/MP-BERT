@@ -6,8 +6,8 @@ First, you need to organize the training data into the following format:
 
 > root_data_path <br>
 &emsp;&emsp;|---train.csv <br>
-&emsp;&emsp;|---val.csv (0ptional) <br>
-&emsp;&emsp;|---test.csv (0ptional) <br>
+&emsp;&emsp;|---val.csv (Optional) <br>
+&emsp;&emsp;|---test.csv (Optional) <br>
 
 After that, you need to organize the data into Record format：
 ```
