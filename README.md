@@ -47,8 +47,8 @@ Current results for the pre-training task of sequence pairs using Pfamily to est
 **Pre-trained models currently available:**
 | model	| url |
 | :--: 	| :--: |
-| UniRef50 1024 max | url |
-| UniRef50 2048 base | url |
+| UniRef50 1024 max | [zenodo](https://doi.org/10.5281/zenodo.7839995) |
+| UniRef50 2048 base | [zenodo](https://doi.org/10.5281/zenodo.7840033) |
 
 **See the Pretrain_code section for more information on the use of pre-training**
 
